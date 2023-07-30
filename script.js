@@ -47,8 +47,19 @@ document.addEventListener('DOMContentLoaded', function () {
     inventory.forEach((item, index) => {
       const li = document.createElement('li');
       li.textContent = `${item.name}: ${item.quantity} 個`;
+      const deleteButton = createDeleteButton(index);
+      li.appendChild(deleteButton);
       inventoryItemsList.appendChild(li);
     });
+  }
+
+  function createDeleteButton(index) {
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = '刪除';
+    deleteButton.addEventListener('click', function () {
+      deleteItem(index);
+    });
+    return deleteButton;
   }
 
   function calculateTotalQuantity() {
@@ -68,8 +79,18 @@ document.addEventListener('DOMContentLoaded', function () {
       const option = document.createElement('option');
       option.textContent = `${item.name}: ${item.quantity} 個`;
       option.value = index;
+      if (item.quantity === 0) {
+        option.disabled = true; // 禁用無庫存項目
+      }
       outStockItemSelect.appendChild(option);
     });
+  }
+
+  function deleteItem(index) {
+    inventory.splice(index, 1);
+    updateInventoryDisplay();
+    updateStockActions();
+    saveInventory();
   }
 
   function removeItem() {
