@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>零食庫存管理系統</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>零食庫存管理系統</h1>
+    <form id="snack-form">
+      <label for="snack-name">零食名稱:</label>
+      <input type="text" id="snack-name" required>
+      <label for="quantity">庫存數量:</label>
+      <input type="number" id="quantity" required>
+      <button type="button" id="add-button">添加</button>
+    </form>
+    <div class="snack-list" id="snack-list">
+      <!-- 這裡將會動態添加庫存清單 -->
+    </div>
+    <div id="inventory-summary">
+      <h2>總計數量</h2>
+      <p>總數量: <span id="total-quantity">0</span></p>
+      <h2>庫存清單</h2>
+      <ul id="inventory-items">
+        <!-- 這裡將會動態添加庫存項目 -->
+      </ul>
+    </div>
+    <div id="stock-actions">
+      <label for="out-stock-item">選擇出庫項目:</label>
+      <select id="out-stock-item"></select>
+      <label for="quantity-to-remove">出庫數量:</label>
+      <input type="number" id="quantity-to-remove" required>
+      <button type="button" id="remove-button">出庫</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
