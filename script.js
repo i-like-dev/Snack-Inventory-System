@@ -40,9 +40,7 @@ document.addEventListener('DOMContentLoaded', function () {
   function updateInventoryDisplay() {
     totalQuantitySpan.textContent = calculateTotalQuantity();
 
-    while (inventoryItemsList.firstChild) {
-      inventoryItemsList.removeChild(inventoryItemsList.firstChild);
-    }
+    inventoryItemsList.innerHTML = ''; // 清空庫存清單
 
     inventory.forEach((item, index) => {
       const li = document.createElement('li');
