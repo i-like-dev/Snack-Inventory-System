@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     inventory.forEach((item, index) => {
       const li = document.createElement('li');
-      li.textContent = `${item.name}: ${item.quantity}`;
+      li.textContent = `${item.name}: ${item.quantity} 個`;
       inventoryItemsList.appendChild(li);
     });
   }
@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     inventory.forEach((item, index) => {
       const option = document.createElement('option');
-      option.textContent = `${item.name}: ${item.quantity}`;
+      option.textContent = `${item.name}: ${item.quantity} 個`;
       option.value = index;
       outStockItemSelect.appendChild(option);
     });
@@ -88,6 +88,9 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
       }
       selectedItem.quantity -= quantityToRemove;
+      if (selectedItem.quantity === 0) {
+        inventory.splice(selectedIndex, 1); // 刪除該項目
+      }
       updateInventoryDisplay();
       updateStockActions();
       saveInventory();
